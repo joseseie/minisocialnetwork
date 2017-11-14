@@ -17,9 +17,9 @@ class MailController extends Controller
     public function index()
     {
 
-        $articles = Message::all();
+        $messages = Message::all();
 //        dd($articles);
-        return view('mail.index',compact('articles'));
+        return view('mail.index',compact('messages'));
     }
 
     /**

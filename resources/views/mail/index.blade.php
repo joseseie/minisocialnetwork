@@ -24,20 +24,21 @@
                 <th style="width: 40px">Percent</th>
             </tr>
             {{--{{  dd(count($articles)) }}--}}
-            @if(isset($articles)  && count($articles) > 0)
-                @forelse($articles as $article)
+            @if(isset($messages)  && count($messages) > 0)
+                @forelse($messages as $message)
+                    {{ dd($message) }}
                 <tr>
-                    <td>{{{  $article->id }}}</td>
+                    <td>{{{  $message->id }}}</td>
                     <td>
                             <span class="name_edit" style="cursor: pointer">
                                {{--{{$curso->nome}}--}}
-                                {{ $article->getShortestContent() }}
+                                {{ $message->getShortestContent() }}
                                </span>
                                     <i class="fa fa-pencil"></i>
                             </span>
                     </td>
-                    <td>{{ $article->created_at }}</td>
-                    <td>{{ $article->user->name }}</td>
+                    <td>{{ $message->created_at }}</td>
+                    <td>{{ $message->user->name }}</td>
                     <td class="td">
                         {{--@if($curso->deleted_at)--}}
                         <span class="label label-danger">Removido</span>
