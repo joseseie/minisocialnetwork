@@ -62,8 +62,6 @@ class MailController extends Controller
         $receiver_user_ids = $request->input('receiver_user_ids');
         $receiver_user_ids = explode(',',str_replace(' ','',str_replace(' ','',$receiver_user_ids)));
 
-//        dd($receiver_user_ids);
-
         foreach ($receiver_user_ids  as $receiver_user_id){
 
             $user = User::orderBy('id','desc')->where('email',$receiver_user_id)->first();
