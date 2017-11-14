@@ -14,23 +14,36 @@
 
                         <input type="hidden" name="sender_user_id" value="{{Auth::user()->id}}">
 {{--                        <p>{{ old("receiver_user_id") }}</p>--}}
-                        <div class="form-group{{ $errors->has('receiver_user_id') ? ' has-error' : '' }}">
-                            <label for="post_on">User</label>
-                            <select name="receiver_user_id" id="receiver_user_id" multiple class="form-control">
+                        <div class="form-group{{ $errors->has('receiver_user_ids') ? ' has-error' : '' }}">
+                            <label for="assunto">Emails, separe com virgula(,)</label>
 
-                                @foreach($users as $user)
-                                    <option value="{{ $user->id }}" title=" {{ $user->email }} ">
-                                        {{ $user->name }}
-                                    </option>
-                                @endforeach
+                            <input type="text" name="receiver_user_ids" class="form-control" value="{{ old('receiver_user_ids') }}">
 
-                            </select>
-                            @if ($errors->has('receiver_user_id'))
+                            @if ($errors->has('receiver_user_ids'))
                                 <span class="help-block">
-                                        <strong>{{ $errors->first('receiver_user_id') }}</strong>
-                                </span>
+                                        <strong>{{ $errors->first('receiver_user_ids') }}</strong>
+                                    </span>
                             @endif
+                            {{--</div>--}}
                         </div>
+
+                        {{--<div class="form-group{{ $errors->has('receiver_user_id') ? ' has-error' : '' }}">--}}
+                            {{--<label for="post_on">User</label>--}}
+                            {{--<select name="receiver_user_id" id="receiver_user_id" multiple class="form-control">--}}
+
+                                {{--@foreach($users as $user)--}}
+                                    {{--<option value="{{ $user->id }}" title=" {{ $user->email }} ">--}}
+                                        {{--{{ $user->name }}--}}
+                                    {{--</option>--}}
+                                {{--@endforeach--}}
+
+                            {{--</select>--}}
+                            {{--@if ($errors->has('receiver_user_id'))--}}
+                                {{--<span class="help-block">--}}
+                                        {{--<strong>{{ $errors->first('receiver_user_id') }}</strong>--}}
+                                {{--</span>--}}
+                            {{--@endif--}}
+                        {{--</div>--}}
 
                         <div class="form-group{{ $errors->has('assunto') ? ' has-error' : '' }}">
                             <label for="assunto">Assunto</label>

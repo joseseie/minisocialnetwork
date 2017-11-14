@@ -54,14 +54,27 @@ class MailController extends Controller
 
         $this->validate($request, [
             'sender_user_id' => 'required',
-            'receiver_user_id' => 'required',
+            'receiver_user_ids' => 'required',
             'assunto' => 'required|min:5|max:50',
             'content' => 'required|min:10|max:500',
         ]);
 
-//        dd($request->all());
-        Message::create($request->all());
+        $receiver_user_ids = $request->input('receiver_user_ids');
+        $receiver_user_ids = explode(',',str_replace(' ','',str_replace(' ','',$receiver_user_ids)));
 
+//        dd($receiver_user_ids);
+
+        foreach ($receiver_user_ids  as $receiver_user_id){
+
+            $user = User::orderBy('id','desc')->where('email',$receiver_user_id)->first();
+
+            if($user) {
+                Message::create(array_merge($request->except('receiver_user_ids'), ['receiver_user_id' => $user->id]));
+            } else {
+                dd('depois de gravar',$user,$receiver_user_id);
+            }
+
+        }
 
 
         return $this->index();
