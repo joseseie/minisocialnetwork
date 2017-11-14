@@ -21,5 +21,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/user/profile}','ProfileController@profile');
 
+Route::get('/listagem/index', 'ArticlesController@table');
+
 Route::resource('articles','ArticlesController');
+Route::resource('mail','MailController');
 

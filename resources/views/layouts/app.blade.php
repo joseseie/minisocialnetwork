@@ -66,6 +66,12 @@
                                     <li>
                                         <a href="/articles">Feed</a>
                                     </li>
+                                    <li>
+                                        <a href="/listagem/index">Tabela</a>
+                                    </li>
+                                    <li>
+                                        <a href="/mail">Mailing</a>
+                                    </li>
 
                                     <li>
                                         <a href="{{ route('logout') }}"

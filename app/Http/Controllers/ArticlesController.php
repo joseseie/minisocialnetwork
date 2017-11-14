@@ -44,6 +44,11 @@ class ArticlesController extends Controller
         return view('articles.create');
     }
 
+    public function table()
+    {
+        $articles  = Article::all();
+        return view('articles.table',compact('articles'));
+    }
     /**
      * Store a newly created resource in storage.
      *

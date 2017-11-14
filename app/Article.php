@@ -34,6 +34,11 @@ class Article extends Model
         return substr($this->content,0,random_int(60,150))."...";
     }
 
+    public function getShortestContent()
+    {
+        return substr($this->content,0,random_int(10,30))."...";
+    }
+
     public function user(){
         return $this->belongsTo('App\User');
     }
