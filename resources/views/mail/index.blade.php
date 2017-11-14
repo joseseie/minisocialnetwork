@@ -16,29 +16,23 @@
         <table class="table table-striped">
             <tbody>
             <tr>
-                <th style="width: 10px">ID</th>
-                <th>Denominacao</th>
-                <th>Data de Cadastro</th>
-                <th>Utilizador</th>
+                <th>Data</th>
+                <th>Assunto</th>
+                <th>Mensagem</th>
+                <th>Remetente</th>
                 <th>Estado</th>
                 <th style="width: 40px">Percent</th>
             </tr>
             {{--{{  dd(count($articles)) }}--}}
             @if(isset($messages)  && count($messages) > 0)
                 @forelse($messages as $message)
-                    {{ dd($message) }}
+                    {{--{{ dd($message) }}--}}
                 <tr>
-                    <td>{{{  $message->id }}}</td>
-                    <td>
-                            <span class="name_edit" style="cursor: pointer">
-                               {{--{{$curso->nome}}--}}
-                                {{ $message->getShortestContent() }}
-                               </span>
-                                    <i class="fa fa-pencil"></i>
-                            </span>
-                    </td>
                     <td>{{ $message->created_at }}</td>
-                    <td>{{ $message->user->name }}</td>
+{{--                    <td>{{{  $message->id }}}</td>--}}
+                    <td> {{ $message->assunto }} </td>
+                    <td> {{ $message->getShortestContent() }} </td>
+                    <td>{{ $message->user_sender->name }}</td>
                     <td class="td">
                         {{--@if($curso->deleted_at)--}}
                         <span class="label label-danger">Removido</span>

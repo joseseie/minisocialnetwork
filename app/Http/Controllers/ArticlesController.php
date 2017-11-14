@@ -57,13 +57,6 @@ class ArticlesController extends Controller
      */
     public function store(Request $request)
     {
-        /* 1. Aqui  criamos a instancia para poder gravar
-        $article = new Article;
-        $article->user_id = Auth::user()->id;
-        $article->content = $request->content;
-        $article->live = (boolean) $request->live;
-        $article->post_on = $request->post_on;
-        $article->save(); */
 
 //        return $request->all();
         //2. A forma mais compacta: so temos de  definir o fillable no Model Article

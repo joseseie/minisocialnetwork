@@ -6,9 +6,15 @@ use App\Article;
 use App\Message;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 
 class MailController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -41,7 +47,16 @@ class MailController extends Controller
      */
     public function store(Request $request)
     {
-        return $request->all();
+
+        $this->validate($request, [
+            'comment' => 'unique:duvida_comments|min:10',
+            'comment_user_id' => 'required',
+        ]);
+
+//        dd($request->all());
+        Message::create($request->all());
+        
+        return $this->index();
     }
 
     /**
