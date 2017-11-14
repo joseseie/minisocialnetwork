@@ -57,22 +57,11 @@
                                         <a href="/profile">Home</a>
                                     </li>
                                     <li>
-                                        <a href="/profile/{{Auth::user()->username}}">My Profile</a>
-                                    </li>
-                                    <hr>
-                                    <li>
-                                        <a href="/articles/create">Create Article</a>
+                                        <a href="/mail/create">Enviar email</a>
                                     </li>
                                     <li>
-                                        <a href="/articles">Feed</a>
+                                        <a href="/mail">Inbox</a>
                                     </li>
-                                    <li>
-                                        <a href="/listagem/index">Tabela</a>
-                                    </li>
-                                    <li>
-                                        <a href="/mail">Mailing</a>
-                                    </li>
-
                                     <li>
                                         <a href="{{ route('logout') }}"
                                             onclick="event.preventDefault();

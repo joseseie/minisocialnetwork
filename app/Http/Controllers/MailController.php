@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Article;
+use App\Message;
 use App\User;
 use Illuminate\Http\Request;
 
@@ -15,7 +16,9 @@ class MailController extends Controller
      */
     public function index()
     {
-        $articles = Article::all();
+
+        $articles = Message::all();
+//        dd($articles);
         return view('mail.index',compact('articles'));
     }
 

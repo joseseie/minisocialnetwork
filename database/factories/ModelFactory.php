@@ -33,3 +33,13 @@ $factory->define(App\Article::class, function (Faker\Generator $faker) {
         'post_on' => Carbon\Carbon::parse('+1 week')
     ];
 });
+
+$factory->define(App\Message::class, function (Faker\Generator $faker) {
+    static $password;
+    return [
+        'sender_user_id' => App\User::all()->random()->id,
+        'receiver_user_id' => App\User::all()->random()->id,
+        'content' => $faker->paragraph(5),
+        'assunto' => $faker->text(10)
+    ];
+});

@@ -12,11 +12,11 @@
                     <form action="/mail" method="POST">
                         {{csrf_field()}}
 
-                        <input type="hidden" name="from_user_id" value="{{Auth::user()->id}}">
+                        <input type="hidden" name="sender_user_id" value="{{Auth::user()->id}}">
 
                         <div class="form-group">
                             <label for="post_on">User</label>
-                            <select name="for_user_id" class="form-control">
+                            <select name="receiver_user_id" class="form-control">
                             @foreach($users as $user)
                                 <option value="{{ $user->id }}" title=" {{ $user->email }}  ">{{ $user->name }}</option>
                             @endforeach
