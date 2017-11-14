@@ -7,7 +7,10 @@
 
     <div class="box-header">
         <div class="row">
-            <h3 class="box-title col-md-5">Emails recebidos</h3>
+            @if(isset($messages))
+                @php($total = count($messages))
+            @endif
+            <h3 class="box-title col-md-5" title="Total de mensagens recebidas: {{ $total }}">Emails recebidos ({{ $total }})</h3>
             <a href="mail/create" class="btn btn-sm btn-success pull-right col-md-2">Criar novo</a>
         </div>
     </div>
@@ -25,6 +28,7 @@
             </tr>
             {{--{{  dd(count($articles)) }}--}}
             @if(isset($messages)  && count($messages) > 0)
+
                 @forelse($messages as $message)
                     {{--{{ dd($message) }}--}}
                 <tr>
@@ -34,12 +38,12 @@
                     <td> {{ $message->getShortestContent() }} </td>
                     <td>{{ $message->user_sender->name }}</td>
                     <td class="td">
-                        {{--@if($curso->deleted_at)--}}
-                        <span class="label label-danger">Removido</span>
-                        {{--@endif--}}
+
+                        <a href="mail/{{ $message->id }}" title="Ler a mensagem (Ver a mensagem)" class="{{ $message->alert() }}">{{ $message->estado() }}</a>
+
                     </td>
 
-                    <td><span class="badge bg-red">{{rand(10,100)}}%</span></td>
+                    <td><a href="mail/{{ $message->id }}/edit" class="btn btn-xs btn-success">Responder</a></td>
                 </tr>
             @endforeach
                 @endif

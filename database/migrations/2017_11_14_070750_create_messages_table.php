@@ -19,6 +19,7 @@ class CreateMessagesTable extends Migration
             $table->integer('receiver_user_id');
             $table->string('assunto');
             $table->text('content');
+            $table->boolean('state')->default(false);
             $table->softDeletes();
             $table->timestamps();
         });

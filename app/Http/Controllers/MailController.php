@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Article;
+use Auth;
+use Illuminate\Support\Facades\DB;
+use Session;
 use App\Message;
 use App\User;
 use Illuminate\Http\Request;
@@ -23,8 +25,10 @@ class MailController extends Controller
     public function index()
     {
 
-        $messages = Message::all();
-//        dd($articles);
+        $messages = Message::orderBy('created_at', 'DESC')
+                    ->where('receiver_user_id',Auth::id())
+                    ->get();
+
         return view('mail.index',compact('messages'));
     }
 
@@ -49,13 +53,17 @@ class MailController extends Controller
     {
 
         $this->validate($request, [
-            'comment' => 'unique:duvida_comments|min:10',
-            'comment_user_id' => 'required',
+            'sender_user_id' => 'required',
+            'receiver_user_id' => 'required',
+            'assunto' => 'required|min:5|max:50',
+            'content' => 'required|min:10|max:500',
         ]);
 
 //        dd($request->all());
         Message::create($request->all());
-        
+
+
+
         return $this->index();
     }
 
@@ -67,7 +75,10 @@ class MailController extends Controller
      */
     public function show($id)
     {
-        return "<h1>show(id)</h1>";
+        $messagem = Message::find($id);
+        $messagem->state = true;
+        $messagem->save();
+        return view('mail.show',compact('messagem'));
     }
 
     /**
@@ -78,7 +89,10 @@ class MailController extends Controller
      */
     public function edit($id)
     {
-        return "<h1>edit(id)</h1>";
+        $messagem = Message::find($id);
+        $users = User::all();
+
+        return view('mail.responder',compact('messagem','users'));
     }
 
     /**

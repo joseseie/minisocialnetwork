@@ -9,7 +9,7 @@ class Message extends Model
     protected $table = 'messages';
 
     protected $fillable = [
-        'sender_user_id', 'receiver_user_id', 'assunto','content'
+        'sender_user_id', 'receiver_user_id', 'assunto','content','state'
     ];
 
     public function getShortContentAttribute()
@@ -28,6 +28,14 @@ class Message extends Model
 
     public function user_receiver(){
         return $this->belongsTo('App\User','receiver_user_id');
+    }
+
+    public function estado(){
+        return $this->state ? 'Lida' : 'Nao Lida';
+    }
+
+    public function alert(){
+        return $this->state ? 'label label-success' : 'label label-info';
     }
 
 }
